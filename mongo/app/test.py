@@ -15,7 +15,15 @@ def storedb(data):
   db.test.drop()
   for i in data:
     db.test.insert(i)
+  
+  cursor = db.test.find()
+  print "Date\t   Close"
+  for result_object in cursor:
+    print result_object["Date"],result_object["Close"]
+
+  print client.database_names()
   print (db.test.count())
+  print (db.collection_names())
 
 def parse(raw_file, delimiter):
   """ 
