@@ -21,6 +21,10 @@ def storedb(data):
   for result_object in cursor:
     print result_object["Date"],result_object["Close"]
 
+  cursor = db.test.find()	
+  for result_object in cursor:
+    print result_object
+  
   print client.database_names()
   print (db.test.count())
   print (db.collection_names())
@@ -42,7 +46,7 @@ def parse(raw_file, delimiter):
   return pdata
 
 def main():
-  spy_data = parse("spy_2013.csv",",")
+  spy_data = parse("spy.csv",",")
   #print(spy_data)
   storedb(spy_data)
 
