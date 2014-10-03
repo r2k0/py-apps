@@ -22,6 +22,7 @@ def storedb(data):
     print result_object["Date"],result_object["Close"]
 
   cursor = db.test.find()	
+  
   for result_object in cursor:
     print result_object
   
