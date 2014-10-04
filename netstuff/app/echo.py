@@ -16,3 +16,10 @@ class HTTPEchoProtocol(basic.LineReceiver):
         responseBody = "You said:\r\n\r\n" + "\r\n".join(self.lines)
         self.transport.write(responseBody)
         self.transport.loseConnection()
+
+class HTTPEchoProtocol(protocol.ServerFactory):
+    def buildProtocol(self, addr):
+        return HTTPEchoProtocol()
+
+reactor.listenTCP(8000, HTTPEchoProtocol())
+reactor.run()
