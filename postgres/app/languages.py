@@ -1,5 +1,6 @@
 import psycopg2
 import sys
+import psycopg2.extras
 
 langs = (
 	(1,'Javascript',294832),
@@ -22,6 +23,12 @@ try:
   cur.execute("SELECT * FROM Languages")
   rows = cur.fetchall()
   for r in rows: print r[0],r[1],r[2]
+  #using Dictionary cursor
+  cursor = con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  cursor.execute("SELECT * FROM Languages")
+  rows = cursor.fetchall()
+  for r in rows:
+    print r["name"],r["repos"]
 
 except psycopg2.DatabaseError, e:
   if con: con.rollback()
